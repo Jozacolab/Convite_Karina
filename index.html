@@ -84,7 +84,7 @@
     </div>
 
     <!-- Inclua o link do seu Google Forms aqui -->
-    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSde0-mrEXAMPLE3nBqxckh-jlHzA0rdwHA/viewform?usp=sf_link" style="display:none;"></iframe>
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfWx7ZA7_2Hgekkzn5r8pthA9OayDl5TTXfql1TAguQT3JqOg/viewform?usp=sf_link" style="display:none;"></iframe>
 
     <script>
         document.getElementById("form-presenca").addEventListener("submit", function(e) {
@@ -94,22 +94,44 @@
             const presenca = document.getElementById("presenca").value;
             const email = document.getElementById("email").value;
 
-            // Acessando o iframe e encontrando o formulário
+            // Acessando o iframe e buscando o documento do Google Forms
             const iframe = document.querySelector('iframe');
-            const form = iframe.contentWindow.document;
+            const formDocument = iframe.contentWindow.document;
 
-            // Preenchendo os campos com name
-            // Exemplo de name dos campos no Google Forms
-            form.getElementsByName("entry.123456789")[0].value = nome;  // Substitua pelo 'name' correto do campo "Nome"
-            form.getElementsByName("entry.987654321")[0].value = presenca;  // Substitua pelo 'name' correto do campo "Presença"
-            form.getElementsByName("entry.1122334455")[0].value = email;  // Substitua pelo 'name' correto do campo "Email"
+            // Preencher o campo "Nome" usando XPath
+            const nomeXPath = "//*[@id='mG61Hd']/div[2]/div/div[2]/div[2]/div/div/div[2]";
+            const nomeInput = getElementByXPath(formDocument, nomeXPath);
+            if (nomeInput) {
+                nomeInput.value = nome;
+            }
 
-            // Submetendo o formulário do Google Forms
-            form.querySelector('form').submit();
+            // Preencher o campo "Presença" usando XPath
+            const presencaXPath = "//*[@id='mG61Hd']/div[2]/div/div[2]/div[3]/div/div/div[2]/div/div[1]/div[1]/div[1]";
+            const presencaInput = getElementByXPath(formDocument, presencaXPath);
+            if (presencaInput) {
+                presencaInput.value = presenca;
+            }
 
-            // Exibir mensagem de sucesso
-            document.getElementById("mensagem").innerText = "Formulário enviado com sucesso!";
+            // Preencher o campo "Email" usando XPath
+            const emailXPath = "//*[@id='mG61Hd']/div[2]/div/div[2]/div[4]/div/div/div[2]/div/div[1]/div/div[1]/input";
+            const emailInput = getElementByXPath(formDocument, emailXPath);
+            if (emailInput) {
+                emailInput.value = email;
+            }
+
+            // Submeter o formulário do Google Forms
+            const submitButton = formDocument.querySelector("form div[jsname='M2UYVd']"); // Button for submitting the form
+            if (submitButton) {
+                submitButton.click();
+                document.getElementById("mensagem").innerText = "Formulário enviado com sucesso!";
+            }
         });
+
+        // Função para obter um elemento usando XPath
+        function getElementByXPath(doc, xpath) {
+            const result = doc.evaluate(xpath, doc, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null);
+            return result.singleNodeValue;
+        }
     </script>
 </body>
 </html>
