@@ -4,23 +4,125 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Confirmação de Presença</title>
+    <style>
+        /* Definindo a paleta de cores */
+        :root {
+            --cor-primaria: #9a8284;
+            --cor-secundaria: #ae9b9c;
+            --cor-terciaria: #c2b4b5;
+            --cor-quaternaria: #d6cdcd;
+            --cor-quintenaria: #eae6e6;
+            --fundo: #ffffff;
+        }
+
+        /* Estilos globais */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: var(--fundo);
+            color: var(--cor-primaria);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        /* Estilos do contêiner do formulário */
+        .form-container {
+            background-color: var(--fundo);
+            border: 1px solid var(--cor-quaternaria);
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        /* Efeito ao passar o mouse sobre o contêiner */
+        .form-container:hover {
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            transform: scale(1.02);
+        }
+
+        /* Título */
+        h2 {
+            color: var(--cor-primaria);
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        /* Estilos dos rótulos e campos do formulário */
+        label {
+            display: block;
+            color: var(--cor-primaria);
+            font-weight: bold;
+            margin-bottom: 8px;
+            text-align: left;
+        }
+
+        input[type="text"], select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid var(--cor-quaternaria);
+            border-radius: 8px;
+            font-size: 16px;
+            color: var(--cor-secundaria);
+            transition: all 0.3s ease;
+        }
+
+        /* Foco nos campos */
+        input[type="text"]:focus, select:focus {
+            outline: none;
+            border-color: var(--cor-primaria);
+            box-shadow: 0 0 5px var(--cor-terciaria);
+        }
+
+        /* Botão de Enviar */
+        button {
+            background-color: var(--cor-primaria);
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: bold;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Efeito ao passar o mouse sobre o botão */
+        button:hover {
+            background-color: var(--cor-secundaria);
+        }
+
+        /* Mensagem de sucesso */
+        #mensagem {
+            color: var(--cor-secundaria);
+            font-size: 16px;
+            margin-top: 15px;
+        }
+    </style>
 </head>
 <body>
-    <h2>Confirme sua Presença</h2>
-    <form id="form-presenca">
-        <label for="nome">Nome:</label>
-        <input type="text" id="nome" name="nome" required><br><br>
+    <div class="form-container">
+        <h2>Confirme sua Presença</h2>
+        <form id="form-presenca">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" required>
 
-        <label for="presenca">Confirma presença?</label>
-        <select id="presenca" name="presenca" required>
-            <option value="Sim">Sim</option>
-            <option value="Não">Não</option>
-        </select><br><br>
+            <label for="presenca">Confirma presença?</label>
+            <select id="presenca" name="presenca" required>
+                <option value="Sim">Sim</option>
+                <option value="Não">Não</option>
+            </select>
 
-        <button type="submit">Enviar</button>
-    </form>
-
-    <p id="mensagem"></p>
+            <button type="submit">Enviar</button>
+        </form>
+        <p id="mensagem"></p>
+    </div>
 
     <script>
         document.getElementById("form-presenca").addEventListener("submit", function(e) {
@@ -29,7 +131,7 @@
             const nome = document.getElementById("nome").value;
             const presenca = document.getElementById("presenca").value;
 
-            fetch("https://script.google.com/macros/s/AKfycbxdYAFJk-aQG7qfN3S5pYOkS0_1p1rVhzPaHIy0ogFbghf24ZVXnlyTfqss86_x5tkh/exec", {
+            fetch("SEU_URL_DO_APPS_SCRIPT", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/x-www-form-urlencoded"
