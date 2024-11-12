@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Confirmação de Presença</title>
     <style>
-        /* Estilos globais e do formulário */
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f9;
@@ -17,38 +16,46 @@
         }
 
         .form-container {
-            background-color: white;
+            background-color: #ffffff;
             padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            max-width: 400px;
             width: 100%;
+            max-width: 400px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         h2 {
+            color: #333;
             text-align: center;
+            font-size: 24px;
         }
 
         label {
             display: block;
-            margin-bottom: 8px;
+            margin: 10px 0 5px;
+            color: #333;
         }
 
-        input, select {
+        input[type="text"],
+        input[type="email"],
+        select {
             width: 100%;
             padding: 8px;
-            margin-bottom: 12px;
-            border: 1px solid #ccc;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
             border-radius: 4px;
+            font-size: 16px;
         }
 
         button {
+            width: 100%;
+            padding: 10px;
             background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
+            color: #fff;
+            font-size: 16px;
             border: none;
             border-radius: 4px;
-            width: 100%;
+            cursor: pointer;
         }
 
         button:hover {
@@ -56,82 +63,32 @@
         }
 
         #mensagem {
+            color: green;
+            font-size: 16px;
             text-align: center;
             margin-top: 15px;
-            color: green;
         }
     </style>
 </head>
 <body>
     <div class="form-container">
         <h2>Confirme sua Presença</h2>
-        <form id="form-presenca">
+        <form id="form-presenca" action="https://docs.google.com/forms/d/e/1FAIpQLSfWx7ZA7_2Hgekkzn5r8pthA9OayDl5TTXfql1TAguQT3JqOg/formResponse" method="post" target="_blank">
             <label for="nome">Nome:</label>
-            <input type="text" id="nome" required>
+            <input type="text" id="nome" name="entry.50502235" required>
 
             <label for="presenca">Confirma presença?</label>
-            <select id="presenca" required>
+            <select id="presenca" name="entry.123988786" required>
                 <option value="Sim">Sim</option>
                 <option value="Não">Não</option>
             </select>
 
             <label for="email">Email:</label>
-            <input type="email" id="email" required>
+            <input type="email" id="email" name="entry.637605782" required>
 
             <button type="submit">Enviar</button>
         </form>
         <p id="mensagem"></p>
     </div>
-
-    <!-- Inclua o link do seu Google Forms aqui -->
-    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfWx7ZA7_2Hgekkzn5r8pthA9OayDl5TTXfql1TAguQT3JqOg/viewform?usp=sf_link" style="display:none;"></iframe>
-
-    <script>
-        document.getElementById("form-presenca").addEventListener("submit", function(e) {
-            e.preventDefault();
-
-            const nome = document.getElementById("nome").value;
-            const presenca = document.getElementById("presenca").value;
-            const email = document.getElementById("email").value;
-
-            // Acessando o iframe e buscando o documento do Google Forms
-            const iframe = document.querySelector('iframe');
-            const formDocument = iframe.contentWindow.document;
-
-            // Preencher o campo "Nome" usando XPath
-            const nomeXPath = "//*[@id='mG61Hd']/div[2]/div/div[2]/div[2]/div/div/div[2]";
-            const nomeInput = getElementByXPath(formDocument, nomeXPath);
-            if (nomeInput) {
-                nomeInput.value = nome;
-            }
-
-            // Preencher o campo "Presença" usando XPath
-            const presencaXPath = "//*[@id='mG61Hd']/div[2]/div/div[2]/div[3]/div/div/div[2]/div/div[1]/div[1]/div[1]";
-            const presencaInput = getElementByXPath(formDocument, presencaXPath);
-            if (presencaInput) {
-                presencaInput.value = presenca;
-            }
-
-            // Preencher o campo "Email" usando XPath
-            const emailXPath = "//*[@id='mG61Hd']/div[2]/div/div[2]/div[4]/div/div/div[2]/div/div[1]/div/div[1]/input";
-            const emailInput = getElementByXPath(formDocument, emailXPath);
-            if (emailInput) {
-                emailInput.value = email;
-            }
-
-            // Submeter o formulário do Google Forms
-            const submitButton = formDocument.querySelector("form div[jsname='M2UYVd']"); // Button for submitting the form
-            if (submitButton) {
-                submitButton.click();
-                document.getElementById("mensagem").innerText = "Formulário enviado com sucesso!";
-            }
-        });
-
-        // Função para obter um elemento usando XPath
-        function getElementByXPath(doc, xpath) {
-            const result = doc.evaluate(xpath, doc, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null);
-            return result.singleNodeValue;
-        }
-    </script>
 </body>
 </html>
