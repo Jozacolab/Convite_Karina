@@ -138,23 +138,34 @@
             const nome = document.getElementById("nome").value;
             const presenca = document.getElementById("presenca").value;
 
-            // Substitua "SEU_URL_DO_APPS_SCRIPT" pelo link do seu Web App
-            fetch("https://script.google.com/macros/s/AKfycbyMrLGVQvY9xt94Uo3iTJEeHAIXpRpz5X8xzooahew/dev", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/x-www-form-urlencoded"
-                },
-                body: `nome=${nome}&presenca=${presenca}`
-            })
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById("mensagem").innerText = data;
-                document.getElementById("form-presenca").reset();
-            })
-            .catch(error => {
-                document.getElementById("mensagem").innerText = "Erro ao enviar os dados.";
-                console.error("Erro:", error);
-            });
+            // Chama a API ipify para obter o IP público do cliente
+            fetch('https://api.ipify.org?format=json')
+                .then(response => response.json())
+                .then(data => {
+                    const ip = data.ip; // Captura o IP
+
+                    // Substitua "SEU_URL_DO_APPS_SCRIPT" pelo link do seu Web App
+                    fetch("https://script.google.com/macros/s/AKfycbyMrLGVQvY9xt94Uo3iTJEeHAIXpRpz5X8xzooahew/dev", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/x-www-form-urlencoded"
+                        },
+                        body: `nome=${nome}&presenca=${presenca}&ip=${ip}` // Envia o IP junto com os dados
+                    })
+                    .then(response => response.text())
+                    .then(data => {
+                        document.getElementById("mensagem").innerText = data;
+                        document.getElementById("form-presenca").reset();
+                    })
+                    .catch(error => {
+                        document.getElementById("mensagem").innerText = "Erro ao enviar os dados.";
+                        console.error("Erro:", error);
+                    });
+                })
+                .catch(error => {
+                    document.getElementById("mensagem").innerText = "Erro ao capturar o IP.";
+                    console.error("Erro ao obter o IP:", error);
+                });
         });
     </script>
 </body>
