@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmação de Presença</title>
+</head>
+<body>
+    <h2>Confirme sua Presença</h2>
+    <form id="form-presenca">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" required><br><br>
+
+        <label for="presenca">Confirma presença?</label>
+        <select id="presenca" name="presenca" required>
+            <option value="Sim">Sim</option>
+            <option value="Não">Não</option>
+        </select><br><br>
+
+        <button type="submit">Enviar</button>
+    </form>
+
+    <p id="mensagem"></p>
+
+    <script>
+        document.getElementById("form-presenca").addEventListener("submit", function(e) {
+            e.preventDefault();
+
+            const nome = document.getElementById("nome").value;
+            const presenca = document.getElementById("presenca").value;
+
+            fetch("https://script.google.com/macros/s/AKfycbxdYAFJk-aQG7qfN3S5pYOkS0_1p1rVhzPaHIy0ogFbghf24ZVXnlyTfqss86_x5tkh/exec", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                },
+                body: `nome=${nome}&presenca=${presenca}`
+            })
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("mensagem").innerText = data;
+                document.getElementById("form-presenca").reset();
+            })
+            .catch(error => {
+                document.getElementById("mensagem").innerText = "Erro ao enviar os dados.";
+                console.error("Erro:", error);
+            });
+        });
+    </script>
+</body>
+</html>
