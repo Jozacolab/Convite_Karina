@@ -25,6 +25,10 @@
             align-items: center;
             height: 100vh;
             margin: 0;
+            background-image: url("logo.png"); /* Caminho relativo da imagem */
+            background-repeat: repeat; /* Faz a imagem se repetir */
+            background-size: contain; /* Ajusta a logo mantendo suas proporções */
+            background-position: center center; /* Centraliza a imagem */
         }
 
         /* Estilos do contêiner do formulário */
@@ -37,6 +41,7 @@
             width: 300px;
             text-align: center;
             transition: all 0.3s ease;
+            box-sizing: border-box; /* Garantir que o padding não afete o tamanho total */
         }
 
         /* Efeito ao passar o mouse sobre o contêiner */
@@ -62,13 +67,14 @@
         }
 
         input[type="text"], select {
-            width: 100%;
+            width: 100%; /* Garantir que a largura seja 100% do contêiner */
             padding: 10px;
-            margin-bottom: 15px;
+            margin-bottom: 15px; /* Manter a margem inferior para espaçamento */
             border: 1px solid var(--cor-quaternaria);
             border-radius: 8px;
             font-size: 16px;
             color: var(--cor-secundaria);
+            box-sizing: border-box; /* Garantir que padding não afete a largura */
             transition: all 0.3s ease;
         }
 
@@ -131,7 +137,8 @@
             const nome = document.getElementById("nome").value;
             const presenca = document.getElementById("presenca").value;
 
-            fetch("https://script.google.com/macros/s/AKfycbyMrLGVQvY9xt94Uo3iTJEeHAIXpRpz5X8xzooahew/dev", {
+            // Substitua "SEU_URL_DO_APPS_SCRIPT" pelo link do seu Web App
+            fetch("https://script.google.com/macros/s/AKfycbxdYAFJk-aQG7qfN3S5pYOkS0_1p1rVhzPaHIy0ogFbghf24ZVXnlyTfqss86_x5tkh/exec", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/x-www-form-urlencoded"
