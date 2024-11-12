@@ -135,42 +135,26 @@
         document.getElementById("form-presenca").addEventListener("submit", function(e) {
             e.preventDefault();
 
-            // Captura os dados do formulário
             const nome = document.getElementById("nome").value;
             const presenca = document.getElementById("presenca").value;
 
-            // Chama a API ipify para obter o IP público do cliente
-            fetch('https://api.ipify.org?format=json')
-                .then(response => response.json())
-                .then(data => {
-                    const ip = data.ip; // Captura o IP
-
-                    // Substitua "SEU_URL_DO_APPS_SCRIPT" pelo link do seu Web App
-                    fetch("https://script.google.com/macros/s/AKfycbyMrLGVQvY9xt94Uo3iTJEeHAIXpRpz5X8xzooahew/dev", {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/x-www-form-urlencoded"
-                        },
-                        body: `nome=${encodeURIComponent(nome)}&presenca=${encodeURIComponent(presenca)}&ip=${encodeURIComponent(ip)}`
-                    })
-                    .then(response => response.text())
-                    .then(data => {
-                        // Exibe a mensagem de sucesso e desabilita o formulário
-                        document.getElementById("mensagem").innerText = data;
-                        document.getElementById("form-presenca").reset();  // Reseta os campos do formulário
-                        document.getElementById("form-presenca").querySelector("button").disabled = true;  // Desabilita o botão
-                        document.getElementById("form-presenca").querySelector("input").disabled = true;  // Desabilita os campos de input
-                        document.getElementById("form-presenca").querySelector("select").disabled = true;  // Desabilita o campo select
-                    })
-                    .catch(error => {
-                        document.getElementById("mensagem").innerText = "Erro ao enviar os dados.";
-                        console.error("Erro:", error);
-                    });
-                })
-                .catch(error => {
-                    document.getElementById("mensagem").innerText = "Erro ao capturar o IP.";
-                    console.error("Erro ao obter o IP:", error);
-                });
+            // Envia os dados diretamente via POST
+            fetch("https://script.google.com/macros/s/AKfycbyMrLGVQvY9xt94Uo3iTJEeHAIXpRpz5X8xzooahew/dev", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                },
+                body: `nome=${encodeURIComponent(nome)}&presenca=${encodeURIComponent(presenca)}`
+            })
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById("mensagem").innerText = data; // Mensagem de sucesso ou erro
+                document.getElementById("form-presenca").reset();
+            })
+            .catch(error => {
+                document.getElementById("mensagem").innerText = "Erro ao enviar os dados.";
+                console.error("Erro:", error);
+            });
         });
     </script>
 </body>
