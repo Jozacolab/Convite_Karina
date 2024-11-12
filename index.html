@@ -135,6 +135,7 @@
         document.getElementById("form-presenca").addEventListener("submit", function(e) {
             e.preventDefault();
 
+            // Captura os dados do formulário
             const nome = document.getElementById("nome").value;
             const presenca = document.getElementById("presenca").value;
 
@@ -150,12 +151,16 @@
                         headers: {
                             "Content-Type": "application/x-www-form-urlencoded"
                         },
-                        body: `nome=${encodeURIComponent(nome)}&presenca=${encodeURIComponent(presenca)}&ip=${encodeURIComponent(ip)}` // Envia o IP junto com os dados
+                        body: `nome=${encodeURIComponent(nome)}&presenca=${encodeURIComponent(presenca)}&ip=${encodeURIComponent(ip)}`
                     })
                     .then(response => response.text())
                     .then(data => {
+                        // Exibe a mensagem de sucesso e desabilita o formulário
                         document.getElementById("mensagem").innerText = data;
-                        document.getElementById("form-presenca").reset();
+                        document.getElementById("form-presenca").reset();  // Reseta os campos do formulário
+                        document.getElementById("form-presenca").querySelector("button").disabled = true;  // Desabilita o botão
+                        document.getElementById("form-presenca").querySelector("input").disabled = true;  // Desabilita os campos de input
+                        document.getElementById("form-presenca").querySelector("select").disabled = true;  // Desabilita o campo select
                     })
                     .catch(error => {
                         document.getElementById("mensagem").innerText = "Erro ao enviar os dados.";
