@@ -27,7 +27,7 @@
             margin: 0;
             background-image: url("logo.png"); /* Caminho relativo da imagem */
             background-repeat: repeat; /* Faz a imagem se repetir */
-            background-size: 150px 150px; /* Ajuste o tamanho da logo */
+            background-size: contain; /* Ajusta a logo mantendo suas proporções */
             background-position: center center; /* Centraliza a imagem */
         }
 
@@ -38,10 +38,11 @@
             border-radius: 15px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             padding: 20px;
-            width: 300px;
+            width: 100%;
+            max-width: 350px; /* Garantir que a largura não ultrapasse 350px */
             text-align: center;
             transition: all 0.3s ease;
-            box-sizing: border-box; /* Garantir que o padding não afete o tamanho total */
+            box-sizing: border-box;
         }
 
         /* Efeito ao passar o mouse sobre o contêiner */
@@ -67,14 +68,14 @@
         }
 
         input[type="text"], select {
-            width: 100%; /* Garantir que a largura seja 100% do contêiner */
+            width: 100%;
             padding: 10px;
-            margin-bottom: 15px; /* Manter a margem inferior para espaçamento */
+            margin-bottom: 15px;
             border: 1px solid var(--cor-quaternaria);
             border-radius: 8px;
             font-size: 16px;
             color: var(--cor-secundaria);
-            box-sizing: border-box; /* Garantir que padding não afete a largura */
+            box-sizing: border-box;
             transition: all 0.3s ease;
         }
 
