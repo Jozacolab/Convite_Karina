@@ -138,7 +138,7 @@
             const nome = document.getElementById("nome").value;
             const presenca = document.getElementById("presenca").value;
 
-            // Envia os dados diretamente via POST
+            // Envia os dados via POST para o Apps Script
             fetch("https://script.google.com/macros/s/AKfycbyMrLGVQvY9xt94Uo3iTJEeHAIXpRpz5X8xzooahew/dev", {
                 method: "POST",
                 headers: {
@@ -146,13 +146,13 @@
                 },
                 body: `nome=${encodeURIComponent(nome)}&presenca=${encodeURIComponent(presenca)}`
             })
-            .then(response => response.text())
+            .then(response => response.text()) // Aguarda a resposta do servidor
             .then(data => {
-                document.getElementById("mensagem").innerText = data; // Mensagem de sucesso ou erro
-                document.getElementById("form-presenca").reset();
+                document.getElementById("mensagem").innerText = data; // Mensagem de sucesso
+                document.getElementById("form-presenca").reset(); // Limpar os campos após envio
             })
             .catch(error => {
-                document.getElementById("mensagem").innerText = "Erro ao enviar os dados.";
+                document.getElementById("mensagem").innerText = "Erro ao enviar os dados."; // Mensagem de erro
                 console.error("Erro:", error);
             });
         });
