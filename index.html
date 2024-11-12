@@ -150,7 +150,7 @@
                         headers: {
                             "Content-Type": "application/x-www-form-urlencoded"
                         },
-                        body: `nome=${nome}&presenca=${presenca}&ip=${ip}` // Envia o IP junto com os dados
+                        body: `nome=${encodeURIComponent(nome)}&presenca=${encodeURIComponent(presenca)}&ip=${encodeURIComponent(ip)}` // Envia o IP junto com os dados
                     })
                     .then(response => response.text())
                     .then(data => {
