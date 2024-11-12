@@ -118,18 +118,24 @@
         <h2>Confirme sua Presença</h2>
         <form id="form-presenca">
             <label for="nome">Nome:</label>
-            <input type="text" id="nome" name="nome" required>
+            <input type="text" id="nome" required>
 
             <label for="presenca">Confirma presença?</label>
-            <select id="presenca" name="presenca" required>
+            <select id="presenca" required>
                 <option value="Sim">Sim</option>
                 <option value="Não">Não</option>
             </select>
+
+            <label for="email">Email:</label>
+            <input type="text" id="email" required>
 
             <button type="submit">Enviar</button>
         </form>
         <p id="mensagem"></p>
     </div>
+
+    <!-- Inclua o link do seu Google Forms aqui -->
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSde0-mrEXAMPLE3nBqxckh-jlHzA0rdwHA/viewform?usp=sf_link" style="display:none;"></iframe>
 
     <script>
         document.getElementById("form-presenca").addEventListener("submit", function(e) {
@@ -137,24 +143,22 @@
 
             const nome = document.getElementById("nome").value;
             const presenca = document.getElementById("presenca").value;
+            const email = document.getElementById("email").value;
 
-            // Envia os dados via POST para o Apps Script
-            fetch("https://script.google.com/macros/s/AKfycbyMrLGVQvY9xt94Uo3iTJEeHAIXpRpz5X8xzooahew/dev", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/x-www-form-urlencoded"
-                },
-                body: `nome=${encodeURIComponent(nome)}&presenca=${encodeURIComponent(presenca)}`
-            })
-            .then(response => response.text()) // Aguarda a resposta do servidor
-            .then(data => {
-                document.getElementById("mensagem").innerText = data; // Mensagem de sucesso
-                document.getElementById("form-presenca").reset(); // Limpar os campos após envio
-            })
-            .catch(error => {
-                document.getElementById("mensagem").innerText = "Erro ao enviar os dados."; // Mensagem de erro
-                console.error("Erro:", error);
-            });
+            // Acessando o iframe e encontrando o formulário
+            const iframe = document.querySelector('iframe');
+            const form = iframe.contentWindow.document;
+
+            // Preenchendo os campos com XPath
+            form.querySelector('xpath[="//*[@id=\'mG61Hd\']/div[2]/div/div[2]/div[2]/div/div/div[2]"]').value = nome;
+            form.querySelector('xpath[="//*[@id=\'mG61Hd\']/div[2]/div/div[2]/div[3]/div/div/div[2]/div/div[1]/div[1]/div[1]"]').value = presenca;
+            form.querySelector('xpath[="//*[@id=\'mG61Hd\']/div[2]/div/div[2]/div[4]/div/div/div[2]/div/div[1]/div/div[1]/input"]').value = email;
+
+            // Submetendo o formulário do Google Forms
+            form.querySelector('form').submit();
+
+            // Exibir mensagem de sucesso
+            document.getElementById("mensagem").innerText = "Formulário enviado com sucesso!";
         });
     </script>
 </body>
