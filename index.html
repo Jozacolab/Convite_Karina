@@ -5,111 +5,138 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Confirmação de Presença</title>
     <style>
-        /* Estilos globais e do formulário */
+        /* Definindo a paleta de cores */
+        :root {
+            --cor-primaria: #9a8284;
+            --cor-secundaria: #ae9b9c;
+            --cor-terciaria: #c2b4b5;
+            --cor-quaternaria: #d6cdcd;
+            --cor-quintenaria: #eae6e6;
+            --fundo: #ffffff;
+        }
+
+        /* Estilos globais */
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
+            background-color: var(--fundo);
+            color: var(--cor-primaria);
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
+            background-image: url("logo.png"); /* Caminho relativo da imagem */
+            background-repeat: repeat; /* Faz a imagem se repetir */
+            background-size: contain; /* Ajusta a logo mantendo suas proporções */
+            background-position: center center; /* Centraliza a imagem */
         }
 
+        /* Estilos do contêiner do formulário */
         .form-container {
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
+            background-color: var(--fundo);
+            border: 1px solid var(--cor-quaternaria);
+            border-radius: 15px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            max-width: 400px;
+            padding: 20px;
             width: 100%;
-        }
-
-        h2 {
+            max-width: 400px;
             text-align: center;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
         }
 
+        /* Efeito ao passar o mouse sobre o contêiner */
+        .form-container:hover {
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            transform: scale(1.02);
+        }
+
+        /* Título */
+        h2 {
+            color: var(--cor-primaria);
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        /* Estilos dos rótulos e campos do formulário */
         label {
             display: block;
+            color: var(--cor-primaria);
+            font-weight: bold;
             margin-bottom: 8px;
+            text-align: left;
         }
 
-        input, select {
+        input[type="text"],
+        input[type="email"],
+        select {
             width: 100%;
-            padding: 8px;
-            margin-bottom: 12px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid var(--cor-quaternaria);
+            border-radius: 8px;
+            font-size: 16px;
+            color: var(--cor-secundaria);
+            box-sizing: border-box;
+            transition: all 0.3s ease;
         }
 
+        /* Foco nos campos */
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        select:focus {
+            outline: none;
+            border-color: var(--cor-primaria);
+            box-shadow: 0 0 5px var(--cor-terciaria);
+        }
+
+        /* Botão de Enviar */
         button {
-            background-color: #4CAF50;
-            color: white;
+            background-color: var(--cor-primaria);
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: bold;
             padding: 10px 20px;
             border: none;
-            border-radius: 4px;
+            border-radius: 8px;
+            cursor: pointer;
             width: 100%;
+            transition: background-color 0.3s ease;
         }
 
+        /* Efeito ao passar o mouse sobre o botão */
         button:hover {
-            background-color: #45a049;
+            background-color: var(--cor-secundaria);
         }
 
+        /* Mensagem de sucesso */
         #mensagem {
-            text-align: center;
+            color: var(--cor-secundaria);
+            font-size: 16px;
             margin-top: 15px;
-            color: green;
+            text-align: center;
         }
     </style>
 </head>
 <body>
     <div class="form-container">
         <h2>Confirme sua Presença</h2>
-        <form id="form-presenca">
+        <form id="form-presenca" action="https://docs.google.com/forms/d/e/1FAIpQLSfWx7ZA7_2Hgekkzn5r8pthA9OayDl5TTXfql1TAguQT3JqOg/formResponse" method="post" target="_blank">
             <label for="nome">Nome:</label>
-            <input type="text" id="nome" required>
+            <input type="text" id="nome" name="entry.50502235" required>
 
             <label for="presenca">Confirma presença?</label>
-            <select id="presenca" required>
+            <select id="presenca" name="entry.123988786" required>
                 <option value="Sim">Sim</option>
                 <option value="Não">Não</option>
             </select>
 
             <label for="email">Email:</label>
-            <input type="email" id="email" required>
+            <input type="email" id="email" name="entry.637605782" required>
 
             <button type="submit">Enviar</button>
         </form>
         <p id="mensagem"></p>
     </div>
-
-    <!-- Inclua o link do seu Google Forms aqui -->
-    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfWx7ZA7_2Hgekkzn5r8pthA9OayDl5TTXfql1TAguQT3JqOg/viewform?usp=sf_link" style="display:none;"></iframe>
-
-    <script>
-        document.getElementById("form-presenca").addEventListener("submit", function(e) {
-            e.preventDefault();
-
-            const nome = document.getElementById("nome").value;
-            const presenca = document.getElementById("presenca").value;
-            const email = document.getElementById("email").value;
-
-            // Acessando o iframe e encontrando o formulário
-            const iframe = document.querySelector('iframe');
-            const form = iframe.contentWindow.document;
-
-            // Preenchendo os campos com name
-            // Exemplo de name dos campos no Google Forms
-            form.getElementsByName("entry.50502235")[0].value = nome;  // Substitua pelo 'name' correto do campo "Nome"
-            form.getElementsByName("entry.123988786")[0].value = presenca;  // Substitua pelo 'name' correto do campo "Presença"
-            form.getElementsByName("entry.637605782")[0].value = email;  // Substitua pelo 'name' correto do campo "Email"
-
-            // Submetendo o formulário do Google Forms
-            form.querySelector('form').submit();
-
-            // Exibir mensagem de sucesso
-            document.getElementById("mensagem").innerText = "Formulário enviado com sucesso!";
-        });
-    </script>
 </body>
 </html>
