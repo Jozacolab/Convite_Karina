@@ -67,8 +67,6 @@
             text-align: left;
         }
 
-        input[type="text"],
-        input[type="email"],
         select {
             width: 100%;
             padding: 10px;
@@ -82,8 +80,6 @@
         }
 
         /* Foco nos campos */
-        input[type="text"]:focus,
-        input[type="email"]:focus,
         select:focus {
             outline: none;
             border-color: var(--cor-primaria);
@@ -120,21 +116,14 @@
 </head>
 <body>
     <div class="form-container">
-        <h2>Confirme sua Presença</h2>
+        <h2>Data do Evento: 28/11/2024</h2>
         <form id="form-presenca" action="https://docs.google.com/forms/d/e/1FAIpQLSfWx7ZA7_2Hgekkzn5r8pthA9OayDl5TTXfql1TAguQT3JqOg/formResponse" method="post" target="_blank">
-            <label for="nome">Nome:</label>
-            <input type="text" id="nome" name="entry.50502235" required>
-
-            <label for="presenca">Confirma presença?</label>
+            <label for="presenca">Endereço do Evento:</label>
             <select id="presenca" name="entry.123988786" required>
-                <option value="Sim">Sim</option>
-                <option value="Não">Não</option>
+                <option value="Down Town, Barra, RJ">Down Town, Barra, RJ</option>
             </select>
 
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="entry.637605782" required>
-
-            <button type="submit">Enviar</button>
+            <button type="submit">Confirmar Presença</button>
         </form>
         <p id="mensagem"></p>
     </div>
