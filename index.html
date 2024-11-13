@@ -37,7 +37,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('./58064.jpg'); /* Usando a imagem carregada */
+            background-image: url('./58064.jpg');
             background-size: cover;
             opacity: 0.9;
             z-index: 0;
@@ -65,6 +65,7 @@
             box-sizing: border-box;
             position: relative;
             z-index: 2;
+            flex-wrap: wrap; /* Permite que o conteúdo se ajuste em telas pequenas */
         }
 
         /* Estilo das imagens laterais */
@@ -94,6 +95,7 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
             box-sizing: border-box;
+            width: 100%;
         }
 
         /* Título */
@@ -154,22 +156,46 @@
             position: relative;
             z-index: 2;
         }
+
+        /* Media Queries para Responsividade */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column; /* Empilha os itens na versão mobile */
+                gap: 10px;
+            }
+
+            .image-container img {
+                width: 100%;
+                max-width: 400px; /* Ajusta a largura das imagens */
+            }
+
+            .form-container {
+                width: 100%; /* Garante que o formulário ocupe toda a largura */
+            }
+        }
+
+        @media (max-width: 480px) {
+            h2 {
+                font-size: 20px; /* Reduz o tamanho da fonte do título */
+            }
+
+            .event-details {
+                font-size: 16px; /* Ajusta o tamanho da fonte dos detalhes do evento */
+            }
+
+            .additional-info {
+                font-size: 16px; /* Reduz o tamanho da fonte para telas pequenas */
+            }
+        }
     </style>
 </head>
 <body>
-    <!-- Padrão de fundo geométrico -->
     <div class="background-pattern"></div>
-
-    <!-- Logo no canto superior esquerdo -->
     <img src="./logo.png" alt="Logo" class="logo">
-
     <div class="container">
-        <!-- Imagem da esquerda -->
         <div class="image-container">
             <img src="./imagem_esquerda.png" alt="Imagem Esquerda">
         </div>
-
-        <!-- Contêiner do formulário -->
         <div class="form-container">
             <div class="decorative-line"></div>
             <h2>Day Care @karinaporter - 28/11/2024</h2>
@@ -180,14 +206,10 @@
             <p id="mensagem"></p>
             <div class="decorative-line"></div>
         </div>
-
-        <!-- Imagem da direita -->
         <div class="image-container">
             <img src="./imagem_direita.png" alt="Imagem Direita">
         </div>
     </div>
-
-    <!-- Contêiner adicional abaixo do principal -->
     <div class="additional-info">
         Day Care, Com comes e bebes, com a gralce pagando tudo
     </div>
