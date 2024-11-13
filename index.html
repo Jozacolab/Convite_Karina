@@ -37,19 +37,19 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('./58064.jpg');
+            background-image: url('./58064.jpg'); /* Usando a imagem carregada */
             background-size: cover;
             opacity: 0.9;
             z-index: 0;
         }
 
-        /* Logo fixada no topo centralizado */
+        /* Logo fixada no canto superior esquerdo */
         .logo {
             position: fixed;
             top: 10px;
             left: 50%;
             transform: translateX(-50%);
-            width: 250px;
+            width: 300px;
             height: auto;
             z-index: 1;
         }
@@ -57,22 +57,19 @@
         /* Contêiner principal para layout em linha */
         .container {
             display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
+            align-items: center;
             gap: 20px;
             max-width: 900px;
             width: 100%;
-            padding: 20px;
+            padding: 10px;
             box-sizing: border-box;
             position: relative;
             z-index: 2;
-            flex-wrap: wrap; /* Permite que o conteúdo se ajuste em telas menores */
         }
 
         /* Estilo das imagens laterais */
         .image-container img {
-            width: 100%;
-            max-width: 350px;
+            width: 350px;
             height: auto;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -91,14 +88,12 @@
             background-color: var(--fundo);
             border: 1px solid var(--cor-quaternaria);
             border-radius: 15px;
-            padding: 30px;
+            padding: 20px;
             flex: 1;
             text-align: center;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
             box-sizing: border-box;
-            width: 100%;
-            max-width: 500px; /* Limita a largura do formulário */
         }
 
         /* Título */
@@ -158,44 +153,6 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             position: relative;
             z-index: 2;
-        }
-
-        /* Media Queries para Responsividade */
-        @media (max-width: 768px) {
-            .container {
-                flex-direction: column; /* Empilha os itens na versão mobile */
-                gap: 10px;
-                padding: 10px;
-            }
-
-            .form-container {
-                width: 100%;
-                max-width: 100%; /* O formulário ocupa toda a largura */
-                padding: 20px;
-            }
-
-            .image-container img {
-                width: 100%;
-                max-width: 400px; /* Ajusta a largura das imagens */
-            }
-        }
-
-        @media (max-width: 480px) {
-            h2 {
-                font-size: 20px; /* Reduz o tamanho da fonte do título */
-            }
-
-            .event-details {
-                font-size: 16px; /* Ajusta o tamanho da fonte dos detalhes do evento */
-            }
-
-            .additional-info {
-                font-size: 16px; /* Reduz o tamanho da fonte para telas pequenas */
-            }
-
-            .image-container img {
-                max-width: 100%; /* Garantir que as imagens não ultrapassem a largura da tela */
-            }
         }
     </style>
 </head>
