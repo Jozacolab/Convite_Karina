@@ -25,7 +25,7 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            position: relative; /* Necessário para posicionamento absoluto da logo de fundo */
+            position: relative;
             overflow: hidden;
         }
 
@@ -39,7 +39,7 @@
             padding: 10px;
             box-sizing: border-box;
             position: relative;
-            z-index: 1; /* Mantém o conteúdo acima da logo de fundo */
+            z-index: 1;
         }
 
         /* Logo de fundo */
@@ -65,6 +65,14 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
+        /* Linha decorativa */
+        .decorative-line {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--cor-quaternaria), transparent);
+            margin: 15px 0;
+        }
+
         /* Contêiner do formulário */
         .form-container {
             background-color: var(--fundo);
@@ -76,6 +84,7 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
             box-sizing: border-box;
+            position: relative;
         }
 
         /* Efeito de hover no contêiner */
@@ -97,6 +106,25 @@
             font-size: 18px;
             margin-bottom: 20px;
             font-weight: bold;
+        }
+
+        /* Adicionando linha superior e inferior no formulário */
+        .form-container::before,
+        .form-container::after {
+            content: '';
+            position: absolute;
+            left: 10%;
+            right: 10%;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--cor-quaternaria), transparent);
+        }
+
+        .form-container::before {
+            top: 10px;
+        }
+
+        .form-container::after {
+            bottom: 10px;
         }
 
         /* Botão de Enviar */
@@ -138,12 +166,14 @@
 
         <!-- Contêiner do formulário -->
         <div class="form-container">
+            <div class="decorative-line"></div> <!-- Linha decorativa superior -->
             <h2>Day Care @karinaporter - 28/11/2024</h2>
             <div class="event-details">Local: Down Town, Barra, RJ</div>
             <form id="form-presenca" action="https://docs.google.com/forms/d/e/1FAIpQLSfWx7ZA7_2Hgekkzn5r8pthA9OayDl5TTXfql1TAguQT3JqOg/formResponse" method="post" target="_blank">
                 <button type="submit">Confirmar Presença</button>
             </form>
             <p id="mensagem"></p>
+            <div class="decorative-line"></div> <!-- Linha decorativa inferior -->
         </div>
 
         <!-- Imagem da direita -->
