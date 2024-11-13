@@ -92,34 +92,6 @@
             font-weight: bold;
         }
 
-        /* Estilos dos rótulos e campos do formulário */
-        label {
-            display: block;
-            color: var(--cor-primaria);
-            font-weight: bold;
-            margin-bottom: 8px;
-            text-align: left;
-        }
-
-        select {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 15px;
-            border: 1px solid var(--cor-quaternaria);
-            border-radius: 8px;
-            font-size: 16px;
-            color: var(--cor-secundaria);
-            background-color: #333;
-            transition: all 0.3s ease;
-        }
-
-        /* Foco nos campos */
-        select:focus {
-            outline: none;
-            border-color: var(--cor-primaria);
-            box-shadow: 0 0 5px var(--cor-terciaria);
-        }
-
         /* Botão de Enviar */
         button {
             background-color: var(--cor-primaria);
@@ -161,9 +133,8 @@
         <!-- Contêiner do formulário -->
         <div class="form-container">
             <h2>Day Care - @karinaporter - 28/11/2024</h2>
+            <div class="event-details">Endereço: Down Town, Barra, RJ</div>
             <form id="form-presenca" action="https://docs.google.com/forms/d/e/1FAIpQLSfWx7ZA7_2Hgekkzn5r8pthA9OayDl5TTXfql1TAguQT3JqOg/formResponse" method="post" target="_blank">
-                <select id="presenca" name="entry.123988786" required>
-                </select>
                 <button type="submit">Confirmar Presença</button>
             </form>
             <p id="mensagem"></p>
