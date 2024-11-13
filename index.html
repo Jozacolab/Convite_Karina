@@ -12,13 +12,13 @@
             --cor-terciaria: #c2b4b5;
             --cor-quaternaria: #d6cdcd;
             --cor-quintenaria: #eae6e6;
-            --fundo-preto: #000000;
+            --fundo: #ffffff;
         }
 
         /* Estilos globais */
         body {
             font-family: Arial, sans-serif;
-            background-color: var(--fundo-preto);
+            background-color: var(--fundo);
             color: var(--cor-primaria);
             display: flex;
             justify-content: center;
@@ -32,23 +32,10 @@
             display: flex;
             align-items: center;
             gap: 20px;
-            max-width: 1000px;
-            width: 90%;
-            box-sizing: border-box;
-        }
-
-        /* Imagem de logo de fundo */
-        .background-logo {
-            position: absolute;
-            top: 0;
-            left: 0;
+            max-width: 900px;
             width: 100%;
-            height: 100%;
-            background-image: url("logo.png");
-            background-size: 200px;
-            background-repeat: repeat;
-            opacity: 0.05;
-            z-index: -1;
+            padding: 10px;
+            box-sizing: border-box;
         }
 
         /* Estilo das imagens laterais */
@@ -56,40 +43,69 @@
             width: 150px;
             height: auto;
             border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-            transform: scale(1);
-            transition: transform 0.5s ease;
-        }
-
-        .image-container img:hover {
-            transform: scale(1.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         /* Contêiner do formulário */
         .form-container {
-            background-color: var(--fundo-preto);
-            border: 2px solid var(--cor-primaria);
+            background-color: var(--fundo);
+            border: 1px solid var(--cor-quaternaria);
             border-radius: 15px;
             padding: 20px;
             flex: 1;
             text-align: center;
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
-            color: var(--cor-quaternaria);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
+            box-sizing: border-box;
         }
 
-        /* Título e informações do evento */
+        /* Efeito de hover no contêiner */
+        .form-container:hover {
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            transform: scale(1.02);
+        }
+
+        /* Título */
         h2 {
             color: var(--cor-primaria);
             font-size: 24px;
             margin-bottom: 10px;
         }
 
+        /* Detalhes do evento */
         .event-details {
-            color: var(--cor-quaternaria);
+            color: var(--cor-secundaria);
             font-size: 18px;
             margin-bottom: 20px;
             font-weight: bold;
+        }
+
+        /* Estilos dos rótulos e campos do formulário */
+        label {
+            display: block;
+            color: var(--cor-primaria);
+            font-weight: bold;
+            margin-bottom: 8px;
+            text-align: left;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid var(--cor-quaternaria);
+            border-radius: 8px;
+            font-size: 16px;
+            color: var(--cor-secundaria);
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+
+        /* Foco nos campos */
+        select:focus {
+            outline: none;
+            border-color: var(--cor-primaria);
+            box-shadow: 0 0 5px var(--cor-terciaria);
         }
 
         /* Botão de Enviar */
@@ -103,12 +119,12 @@
             border-radius: 8px;
             cursor: pointer;
             width: 100%;
-            transition: background-color 0.3s ease, transform 0.3s ease;
+            transition: background-color 0.3s ease;
         }
 
+        /* Efeito ao passar o mouse sobre o botão */
         button:hover {
             background-color: var(--cor-secundaria);
-            transform: scale(1.05);
         }
 
         /* Mensagem de sucesso */
@@ -121,9 +137,6 @@
     </style>
 </head>
 <body>
-    <!-- Background logo -->
-    <div class="background-logo"></div>
-
     <div class="container">
         <!-- Imagem da esquerda -->
         <div class="image-container">
@@ -132,9 +145,13 @@
 
         <!-- Contêiner do formulário -->
         <div class="form-container">
-            <h2>Day Care - @karinaporter - 28/11/2024</h2>
-            <div class="event-details">Endereço: Down Town, Barra, RJ</div>
+            <h2>Data do Evento: 28/11/2024</h2>
+            <div class="event-details">Local: Down Town, Barra, RJ</div>
             <form id="form-presenca" action="https://docs.google.com/forms/d/e/1FAIpQLSfWx7ZA7_2Hgekkzn5r8pthA9OayDl5TTXfql1TAguQT3JqOg/formResponse" method="post" target="_blank">
+                <label for="presenca">Endereço do Evento:</label>
+                <select id="presenca" name="entry.123988786" required>
+                    <option value="Down Town, Barra, RJ">Down Town, Barra, RJ</option>
+                </select>
                 <button type="submit">Confirmar Presença</button>
             </form>
             <p id="mensagem"></p>
