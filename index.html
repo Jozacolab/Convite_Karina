@@ -54,7 +54,7 @@
             z-index: 1;
         }
 
-        /* Contêiner principal para layout em linha (desktop) */
+        /* Contêiner principal para layout em linha */
         .container {
             display: flex;
             justify-content: space-between;
@@ -98,7 +98,7 @@
             transition: all 0.3s ease;
             box-sizing: border-box;
             width: 100%;
-            max-width: 500px; /* Limita a largura do formulário para telas grandes */
+            max-width: 500px; /* Limita a largura do formulário */
         }
 
         /* Título */
@@ -200,12 +200,19 @@
     </style>
 </head>
 <body>
+    <!-- Padrão de fundo geométrico -->
     <div class="background-pattern"></div>
+
+    <!-- Logo no canto superior esquerdo -->
     <img src="./logo.png" alt="Logo" class="logo">
+
     <div class="container">
+        <!-- Imagem da esquerda -->
         <div class="image-container">
             <img src="./imagem_esquerda.png" alt="Imagem Esquerda">
         </div>
+
+        <!-- Contêiner do formulário -->
         <div class="form-container">
             <div class="decorative-line"></div>
             <h2>Day Care @karinaporter - 28/11/2024</h2>
@@ -216,10 +223,14 @@
             <p id="mensagem"></p>
             <div class="decorative-line"></div>
         </div>
+
+        <!-- Imagem da direita -->
         <div class="image-container">
             <img src="./imagem_direita.png" alt="Imagem Direita">
         </div>
     </div>
+
+    <!-- Contêiner adicional abaixo do principal -->
     <div class="additional-info">
         Day Care, Com comes e bebes, com a gralce pagando tudo
     </div>
