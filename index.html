@@ -25,37 +25,66 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-image: url("logo.png"); /* Caminho relativo da imagem */
-            background-repeat: repeat; /* Faz a imagem se repetir */
-            background-size: contain; /* Ajusta a logo mantendo suas proporções */
-            background-position: center center; /* Centraliza a imagem */
         }
 
-        /* Estilos do contêiner do formulário */
-        .form-container {
+        /* Estilos do contêiner principal */
+        .main-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             background-color: var(--fundo);
             border: 1px solid var(--cor-quaternaria);
             border-radius: 15px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             padding: 20px;
-            width: 100%;
-            max-width: 400px;
-            text-align: center;
+            max-width: 800px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
             box-sizing: border-box;
         }
 
-        /* Efeito ao passar o mouse sobre o contêiner */
-        .form-container:hover {
+        /* Efeito de hover */
+        .main-container:hover {
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
             transform: scale(1.02);
+        }
+
+        /* Estilo das imagens */
+        .image-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 150px;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Estilos do contêiner do formulário */
+        .form-container {
+            flex: 1;
+            margin-left: 20px;
+            text-align: left;
         }
 
         /* Título */
         h2 {
             color: var(--cor-primaria);
             font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        /* Detalhes do evento */
+        .event-details {
+            color: var(--cor-secundaria);
+            font-size: 18px;
             margin-bottom: 20px;
+            font-weight: bold;
         }
 
         /* Estilos dos rótulos e campos do formulário */
@@ -115,17 +144,26 @@
     </style>
 </head>
 <body>
-    <div class="form-container">
-        <h2>Data do Evento: 28/11/2024</h2>
-        <form id="form-presenca" action="https://docs.google.com/forms/d/e/1FAIpQLSfWx7ZA7_2Hgekkzn5r8pthA9OayDl5TTXfql1TAguQT3JqOg/formResponse" method="post" target="_blank">
-            <label for="presenca">Endereço do Evento:</label>
-            <select id="presenca" name="entry.123988786" required>
-                <option value="Down Town, Barra, RJ">Down Town, Barra, RJ</option>
-            </select>
+    <div class="main-container">
+        <!-- Contêiner de imagens -->
+        <div class="image-container">
+            <img src="imagem_esquerda.png" alt="Imagem Esquerda">
+            <img src="imagem_direita.png" alt="Imagem Direita">
+        </div>
 
-            <button type="submit">Confirmar Presença</button>
-        </form>
-        <p id="mensagem"></p>
+        <!-- Contêiner do formulário -->
+        <div class="form-container">
+            <h2>Data do Evento: 28/11/2024</h2>
+            <div class="event-details">Local: Down Town, Barra, RJ</div>
+            <form id="form-presenca" action="https://docs.google.com/forms/d/e/1FAIpQLSfWx7ZA7_2Hgekkzn5r8pthA9OayDl5TTXfql1TAguQT3JqOg/formResponse" method="post" target="_blank">
+                <label for="presenca">Endereço do Evento:</label>
+                <select id="presenca" name="entry.123988786" required>
+                    <option value="Down Town, Barra, RJ">Down Town, Barra, RJ</option>
+                </select>
+                <button type="submit">Confirmar Presença</button>
+            </form>
+            <p id="mensagem"></p>
+        </div>
     </div>
 </body>
 </html>
