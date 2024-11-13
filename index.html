@@ -27,9 +27,33 @@
             margin: 0;
             position: relative;
             overflow: hidden;
+            flex-direction: column;
         }
 
-        /* Contêiner geral para layout em linha */
+        /* Padrão de fundo com linhas geométricas */
+        .background-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('/mnt/data/image.png'); /* Usando a imagem carregada */
+            background-size: cover;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        /* Logo fixada no canto superior esquerdo */
+        .logo {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            width: 80px;
+            height: auto;
+            z-index: 1;
+        }
+
+        /* Contêiner principal para layout em linha */
         .container {
             display: flex;
             align-items: center;
@@ -39,22 +63,7 @@
             padding: 10px;
             box-sizing: border-box;
             position: relative;
-            z-index: 1;
-        }
-
-        /* Logo de fundo */
-        .background-logo {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url("./logo.png");
-            background-size: 200px;
-            background-repeat: repeat;
-            background-position: center;
-            opacity: 0.05;
-            z-index: 0;
+            z-index: 2;
         }
 
         /* Estilo das imagens laterais */
@@ -84,13 +93,6 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
             box-sizing: border-box;
-            position: relative;
-        }
-
-        /* Efeito de hover no contêiner */
-        .form-container:hover {
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-            transform: scale(1.02);
         }
 
         /* Título */
@@ -106,25 +108,6 @@
             font-size: 18px;
             margin-bottom: 20px;
             font-weight: bold;
-        }
-
-        /* Adicionando linha superior e inferior no formulário */
-        .form-container::before,
-        .form-container::after {
-            content: '';
-            position: absolute;
-            left: 10%;
-            right: 10%;
-            height: 1px;
-            background: linear-gradient(to right, transparent, var(--cor-quaternaria), transparent);
-        }
-
-        .form-container::before {
-            top: 10px;
-        }
-
-        .form-container::after {
-            bottom: 10px;
         }
 
         /* Botão de Enviar */
@@ -153,10 +136,31 @@
             margin-top: 15px;
             text-align: center;
         }
+
+        /* Contêiner adicional abaixo do principal */
+        .additional-info {
+            color: var(--cor-primaria);
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: var(--cor-quintenaria);
+            border: 1px solid var(--cor-quaternaria);
+            border-radius: 10px;
+            width: 80%;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 2;
+        }
     </style>
 </head>
 <body>
-    <div class="background-logo"></div> <!-- Logo de fundo -->
+    <!-- Padrão de fundo geométrico -->
+    <div class="background-pattern"></div>
+
+    <!-- Logo no canto superior esquerdo -->
+    <img src="./logo.png" alt="Logo" class="logo">
 
     <div class="container">
         <!-- Imagem da esquerda -->
@@ -166,20 +170,25 @@
 
         <!-- Contêiner do formulário -->
         <div class="form-container">
-            <div class="decorative-line"></div> <!-- Linha decorativa superior -->
+            <div class="decorative-line"></div>
             <h2>Day Care @karinaporter - 28/11/2024</h2>
             <div class="event-details">Local: Down Town, Barra, RJ</div>
             <form id="form-presenca" action="https://docs.google.com/forms/d/e/1FAIpQLSfWx7ZA7_2Hgekkzn5r8pthA9OayDl5TTXfql1TAguQT3JqOg/formResponse" method="post" target="_blank">
                 <button type="submit">Confirmar Presença</button>
             </form>
             <p id="mensagem"></p>
-            <div class="decorative-line"></div> <!-- Linha decorativa inferior -->
+            <div class="decorative-line"></div>
         </div>
 
         <!-- Imagem da direita -->
         <div class="image-container">
             <img src="./imagem_direita.png" alt="Imagem Direita">
         </div>
+    </div>
+
+    <!-- Contêiner adicional abaixo do principal -->
+    <div class="additional-info">
+        Day Care, Com comes e bebes, com a gralce pagando tudo
     </div>
 </body>
 </html>
