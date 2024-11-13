@@ -27,49 +27,42 @@
             margin: 0;
         }
 
-        /* Estilos do contêiner principal */
-        .main-container {
+        /* Contêiner geral para layout em linha */
+        .container {
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            gap: 20px;
+            max-width: 900px;
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        /* Estilo das imagens laterais */
+        .image-container img {
+            width: 150px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Contêiner do formulário */
+        .form-container {
             background-color: var(--fundo);
             border: 1px solid var(--cor-quaternaria);
             border-radius: 15px;
             padding: 20px;
-            max-width: 800px;
+            flex: 1;
+            text-align: center;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
             box-sizing: border-box;
         }
 
-        /* Efeito de hover */
-        .main-container:hover {
+        /* Efeito de hover no contêiner */
+        .form-container:hover {
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
             transform: scale(1.02);
-        }
-
-        /* Estilo das imagens */
-        .image-container {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            width: 150px;
-        }
-
-        .image-container img {
-            width: 100%;
-            height: auto;
-            margin-bottom: 10px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Estilos do contêiner do formulário */
-        .form-container {
-            flex: 1;
-            margin-left: 20px;
-            text-align: left;
         }
 
         /* Título */
@@ -144,16 +137,15 @@
     </style>
 </head>
 <body>
-    <div class="main-container">
-        <!-- Contêiner de imagens -->
+    <div class="container">
+        <!-- Imagem da esquerda -->
         <div class="image-container">
             <img src="imagem_esquerda.png" alt="Imagem Esquerda">
-            <img src="imagem_direita.png" alt="Imagem Direita">
         </div>
 
         <!-- Contêiner do formulário -->
         <div class="form-container">
-            <h2>Day Care - @karinaporter - 28/11/2024</h2>
+            <h2>Data do Evento: 28/11/2024</h2>
             <div class="event-details">Local: Down Town, Barra, RJ</div>
             <form id="form-presenca" action="https://docs.google.com/forms/d/e/1FAIpQLSfWx7ZA7_2Hgekkzn5r8pthA9OayDl5TTXfql1TAguQT3JqOg/formResponse" method="post" target="_blank">
                 <label for="presenca">Endereço do Evento:</label>
@@ -163,6 +155,11 @@
                 <button type="submit">Confirmar Presença</button>
             </form>
             <p id="mensagem"></p>
+        </div>
+
+        <!-- Imagem da direita -->
+        <div class="image-container">
+            <img src="imagem_direita.png" alt="Imagem Direita">
         </div>
     </div>
 </body>
